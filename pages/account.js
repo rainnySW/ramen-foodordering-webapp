@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { useState, useEffect } from 'react';
 
-const AuthForm = ({ setUser, t, setIsDark, setLang }) => {
+const AuthForm = ({ user, setUser, t, setIsDark, setLang }) => {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -186,7 +186,7 @@ export default function Account({ isDark, setIsDark, user, setUser, lang, setLan
         </h1>
 
         {(!user || !user.isRegistered) ? (
-          <AuthForm setUser={setUser} t={t} setIsDark={setIsDark} setLang={setLang} />
+          <AuthForm user={user} setUser={setUser} t={t} setIsDark={setIsDark} setLang={setLang} />
         ) : (
           <div className="bg-white dark:bg-[#38302C] rounded-[32px] p-8 shadow-[0_10px_40px_-10px_rgba(74,59,50,0.08)] dark:shadow-none border border-transparent dark:border-white/5 mb-8 flex flex-col md:flex-row items-center gap-6">
             <div className="relative">
