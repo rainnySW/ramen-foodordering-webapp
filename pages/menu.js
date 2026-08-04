@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 export default function Home({ cart, setCart, t, setIsCartOpen, isDark, setIsDark, setEditingItem, lang }) {
   const [menuItems, setMenuItems] = useState([])
   const [searchQuery, setSearchQuery] = useState('')
+  const [activeCategory, setActiveCategory] = useState('All')
 
   useEffect(() => {
     // Fetch menu from API
@@ -34,14 +35,21 @@ export default function Home({ cart, setCart, t, setIsCartOpen, isDark, setIsDar
   const filteredMenu = menuItems.filter(item => {
     const itemName = lang === 'th' && item.name_th ? item.name_th : item.name;
     const itemDesc = lang === 'th' && item.description_th ? item.description_th : item.description;
-    return itemName.toLowerCase().includes(searchQuery.toLowerCase()) || 
-           (itemDesc && itemDesc.toLowerCase().includes(searchQuery.toLowerCase()));
+    
+    const matchesSearch = itemName.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                          (itemDesc && itemDesc.toLowerCase().includes(searchQuery.toLowerCase()));
+                          
+    const matchesCategory = activeCategory === 'All' || item.category === activeCategory;
+    
+    return matchesSearch && matchesCategory;
   });
+
+  const categories = ['All', 'Ramen', 'Sides', 'Drinks'];
 
   return (
     <>
       <Head>
-        <title>{t('restaurantName')} - Menu</title>
+        <title>{`${t('restaurantName')} - Menu`}</title>
         <meta name="description" content="In-Restaurant Table Ordering Web Application" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
@@ -77,9 +85,26 @@ export default function Home({ cart, setCart, t, setIsCartOpen, isDark, setIsDar
               onClick={() => setIsCartOpen(true)}
               className="hidden md:flex items-center gap-2 bg-[#D97736] text-white px-5 py-3 rounded-2xl font-semibold hover:opacity-90 transition-all shadow-[0_4px_15px_rgba(217,119,54,0.3)] active:scale-95 whitespace-nowrap"
             >
-              🛒 {cart.reduce((s, i) => s + i.quantity, 0)} Items
+              🛒 {cart.reduce((s, i) => s + i.quantity, 0)} {t('items')}
             </button>
           </div>
+        </div>
+
+        {/* Category Filters */}
+        <div className="flex gap-3 mb-8 overflow-x-auto pb-2 scrollbar-hide w-full" style={{ WebkitOverflowScrolling: 'touch' }}>
+          {categories.map(cat => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`px-6 py-3 rounded-full font-bold whitespace-nowrap transition-all shadow-sm ${
+                activeCategory === cat 
+                  ? 'bg-[#D97736] text-white shadow-[0_4px_15px_rgba(217,119,54,0.3)]' 
+                  : 'bg-white dark:bg-[#38302C] text-[#4A3B32] dark:text-[#F5EFE6] hover:bg-gray-100 dark:hover:bg-[#2A2421]'
+              }`}
+            >
+              {t(cat.toLowerCase())}
+            </button>
+          ))}
         </div>
         
         {filteredMenu.length === 0 ? (

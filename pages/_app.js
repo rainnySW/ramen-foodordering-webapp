@@ -63,12 +63,26 @@ export default function App({ Component, pageProps }) {
       ordersThisMonth: "Orders this month", edit: "Edit", save: "Save",
       appSettings: "App Settings", theme: "Theme", themeDesc: "Switch between Light and Dark mode",
       language: "Language", languageDesc: "English / ไทย",
-      notifications: "Notifications", notificationsDesc: "Order status alerts (Coming soon)"
+      notifications: "Notifications", notificationsDesc: "Order status alerts (Coming soon)",
+      viewOrder: "View Order", editOptions: "Edit Options", customize: "Customize",
+      size: "Size", extras: "Extras", sauce: "Sauce", sweetness: "Sweetness",
+      normal: "Normal", special: "Special", superSpecial: "Super Special",
+      included: "Included", addEgg: "Add Egg", extraChashu: "Extra Chashu",
+      none: "None", ketchup: "Ketchup", mayo: "Mayo", updateOrder: "Update Order",
+      areYouSure: "Are you sure?", items: "Items", welcomeBack: "Welcome Back!",
+      join: "Join", signInToAccess: "Sign in to access your orders",
+      createAccountToSave: "Create an account to save preferences",
+      nameLabel: "Name", emailLabel: "Email", passwordLabel: "Password",
+      signIn: "Sign In", signUp: "Sign Up", dontHaveAccount: "Don't have an account? ",
+      alreadyHaveAccount: "Already have an account? ",
+      withoutAccountOrder: "You can still order food without an account by returning to the Menu.",
+      yourNamePlaceholder: "Your Name", noPlaceholder: "No.", signOut: "Sign Out",
+      all: "All", ramen: "Ramen", sides: "Sides", drinks: "Drinks"
     },
     th: {
-      restaurantName: "กินซ่า ราเมง",
+      restaurantName: "กินซ่า ราเมน",
       navHome: "หน้าหลัก", navMenu: "เมนู", navCart: "ตะกร้า", navAccount: "บัญชี",
-      title1: "สัมผัสรสชาติแท้จริงของ", title2: "กินซ่า ราเมง",
+      title1: "สัมผัสรสชาติแท้จริงของ", title2: "กินซ่า ราเมน",
       subtitle: "น้ำซุปเคี่ยวจนเข้มข้น วัตถุดิบพรีเมียม และบรรยากาศที่อบอุ่นที่สุด ราเมนชามโปรดของคุณรออยู่",
       exploreMenu: "ดูเมนู", chefsPick: "เชฟแนะนำ",
       menuTitle: "เมนู.", searchPlaceholder: "ค้นหาราเมน...",
@@ -90,7 +104,21 @@ export default function App({ Component, pageProps }) {
       ordersThisMonth: "ออเดอร์เดือนนี้", edit: "แก้ไข", save: "บันทึก",
       appSettings: "การตั้งค่าแอป", theme: "ธีม", themeDesc: "สลับระหว่างโหมดสว่างและมืด",
       language: "ภาษา", languageDesc: "English / ไทย",
-      notifications: "การแจ้งเตือน", notificationsDesc: "แจ้งเตือนสถานะอาหาร (เร็วๆ นี้)"
+      notifications: "การแจ้งเตือน", notificationsDesc: "แจ้งเตือนสถานะอาหาร (เร็วๆ นี้)",
+      viewOrder: "ดูออเดอร์", editOptions: "แก้ไขตัวเลือก", customize: "ปรับแต่ง",
+      size: "ขนาด", extras: "เพิ่มท็อปปิ้ง", sauce: "ซอส", sweetness: "ความหวาน",
+      normal: "ธรรมดา", special: "พิเศษ", superSpecial: "โคตรพิเศษ",
+      included: "รวมแล้ว", addEgg: "เพิ่มไข่", extraChashu: "เพิ่มหมูชาชู",
+      none: "ไม่ใส่", ketchup: "ซอสมะเขือเทศ", mayo: "มายองเนส", updateOrder: "อัปเดตออเดอร์",
+      areYouSure: "แน่ใจหรือไม่?", items: "รายการ", welcomeBack: "ยินดีต้อนรับกลับ!",
+      join: "เข้าร่วม", signInToAccess: "เข้าสู่ระบบเพื่อดูออเดอร์ของคุณ",
+      createAccountToSave: "สร้างบัญชีเพื่อบันทึกการตั้งค่า",
+      nameLabel: "ชื่อ", emailLabel: "อีเมล", passwordLabel: "รหัสผ่าน",
+      signIn: "เข้าสู่ระบบ", signUp: "สมัครสมาชิก", dontHaveAccount: "ยังไม่มีบัญชีใช่ไหม? ",
+      alreadyHaveAccount: "มีบัญชีอยู่แล้วใช่ไหม? ",
+      withoutAccountOrder: "คุณยังสามารถสั่งอาหารโดยไม่ต้องมีบัญชีได้โดยกลับไปที่หน้าเมนู",
+      yourNamePlaceholder: "ชื่อของคุณ", noPlaceholder: "เลขที่.", signOut: "ออกจากระบบ",
+      all: "ทั้งหมด", ramen: "ราเมน", sides: "ของทานเล่น", drinks: "เครื่องดื่ม"
     }
   }
   const t = (key) => translations[lang]?.[key] || key
@@ -226,7 +254,7 @@ export default function App({ Component, pageProps }) {
                 className="w-full bg-[#D97736] text-white px-6 py-4 rounded-3xl font-bold text-lg shadow-[0_10px_30px_rgba(217,119,54,0.4)] flex items-center justify-between active:scale-95 transition-transform"
               >
                 <span className="flex items-center gap-2">
-                  🛒 View Order ({cartCount})
+                  🛒 {t('viewOrder')} ({cartCount})
                 </span>
                 <span>${cartTotal.toFixed(2)}</span>
               </button>
@@ -250,6 +278,7 @@ export default function App({ Component, pageProps }) {
             onClose={() => setEditingItem(null)}
             onSave={handleSaveItem}
             lang={lang}
+            t={t}
           />
         </div>
       </div>

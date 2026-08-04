@@ -29,7 +29,7 @@ export default function Home({ t, lang }) {
   return (
     <>
       <Head>
-        <title>{t('restaurantName')} - Home</title>
+        <title>{`${t('restaurantName')} - Home`}</title>
       </Head>
       <main className="min-h-screen p-4 md:p-10 flex flex-col items-center justify-center pb-32 md:pb-10 relative overflow-hidden">
         

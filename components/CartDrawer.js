@@ -123,16 +123,16 @@ export default function CartDrawer({ cart, setCart, isCartOpen, setIsCartOpen, s
                   {(item.options?.size || item.options?.extras?.length > 0 || item.options?.sauce || item.options?.sweetness) ? (
                     <div className="flex justify-between items-end mt-2 pt-2 border-t border-gray-100 dark:border-white/5 text-sm">
                       <div className="opacity-70 flex-1">
-                        {item.options.size && <div>Size: {item.options.size}</div>}
-                        {item.options.extras?.length > 0 && <div>Extras: {item.options.extras.join(', ')}</div>}
-                        {item.options.sauce && item.options.sauce !== 'None' && <div>Sauce: {item.options.sauce}</div>}
-                        {item.options.sweetness && <div>Sweetness: {item.options.sweetness}</div>}
+                        {item.options.size && <div>{t('size')}: {t(item.options.size.replace(' ', '').replace('S', 's').replace('E', 'e').replace('C', 'c').replace('K', 'k').replace('M', 'm').replace('N', 'n').replace('A', 'a')) || item.options.size}</div>}
+                        {item.options.extras?.length > 0 && <div>{t('extras')}: {item.options.extras.map(e => t(e.replace(' ', '').replace('A', 'a').replace('E', 'e')) || e).join(', ')}</div>}
+                        {item.options.sauce && item.options.sauce !== 'None' && <div>{t('sauce')}: {t(item.options.sauce.toLowerCase()) || item.options.sauce}</div>}
+                        {item.options.sweetness && <div>{t('sweetness')}: {item.options.sweetness}</div>}
                       </div>
                       <button onClick={() => setEditingItem(item)} className="text-[#D97736] font-semibold hover:underline bg-[#D97736]/10 px-3 py-1 rounded-xl">{t('edit')}</button>
                     </div>
                   ) : (
                     <div className="flex justify-end mt-2 pt-2 border-t border-gray-100 dark:border-white/5 text-sm">
-                      <button onClick={() => setEditingItem(item)} className="text-[#D97736] font-semibold hover:underline bg-[#D97736]/10 px-3 py-1 rounded-xl">Edit Options</button>
+                      <button onClick={() => setEditingItem(item)} className="text-[#D97736] font-semibold hover:underline bg-[#D97736]/10 px-3 py-1 rounded-xl">{t('editOptions')}</button>
                     </div>
                   )}
                 </div>
@@ -184,8 +184,8 @@ export default function CartDrawer({ cart, setCart, isCartOpen, setIsCartOpen, s
               )}
               {paymentOption === 'Scan QR' && (
                 <div className="bg-white dark:bg-[#38302C] rounded-2xl p-6 text-center shadow-sm">
-                  <div className="w-32 h-32 bg-gray-200 dark:bg-gray-700 mx-auto rounded-xl flex items-center justify-center mb-4">
-                    <span className="text-3xl">QR</span>
+                  <div className="w-32 h-32 mx-auto rounded-xl overflow-hidden mb-4 shadow-sm border border-gray-200 dark:border-gray-600">
+                    <img src="/qr_placeholder.jpg" alt="QR Code Placeholder" className="w-full h-full object-cover" />
                   </div>
                   <p className="font-bold text-[#D97736]">{t('scanQRTitle')}</p>
                   <p className="text-sm opacity-70 mt-1">{t('total')}: ฿{cartTotal.toFixed(2)}</p>
@@ -216,7 +216,7 @@ export default function CartDrawer({ cart, setCart, isCartOpen, setIsCartOpen, s
           ) : checkoutStep === 'clear_confirm' ? (
             <div className="h-full flex flex-col items-center justify-center text-center space-y-6 animate-fade-in">
               <span className="text-6xl">🗑️</span>
-              <h3 className="text-2xl font-bold">Are you sure?</h3>
+              <h3 className="text-2xl font-bold">{t('areYouSure')}</h3>
               <p className="opacity-70">{t('areYouSureClear')}</p>
               
               <div className="w-full space-y-3 mt-4">

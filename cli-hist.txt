@@ -1,1 +1,9 @@
 agy --conversation=6580249a-15c8-417a-b85f-69130dfc8d4b (or -c)
+
+echo "# ramen-foodordering-webapp" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/rainnySW/ramen-foodordering-webapp.git
+git push -u origin main

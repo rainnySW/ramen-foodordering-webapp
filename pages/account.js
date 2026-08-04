@@ -42,10 +42,10 @@ const AuthForm = ({ user, setUser, t, setIsDark, setLang }) => {
     <div className="bg-white dark:bg-[#38302C] rounded-[32px] p-8 shadow-[0_10px_40px_-10px_rgba(74,59,50,0.08)] dark:shadow-none border border-transparent dark:border-white/5 mb-8 text-center max-w-md mx-auto">
       <div className="text-6xl mb-6">🍜</div>
       <h2 className="text-2xl font-bold mb-2 text-[#4A3B32] dark:text-[#F5EFE6]">
-        {isLogin ? 'Welcome Back!' : `Join ${t('restaurantName')}`}
+        {isLogin ? t('welcomeBack') : `${t('join')} ${t('restaurantName')}`}
       </h2>
       <p className="opacity-60 mb-6 text-sm">
-        {isLogin ? 'Sign in to access your orders' : 'Create an account to save preferences'}
+        {isLogin ? t('signInToAccess') : t('createAccountToSave')}
       </p>
 
       {error && <div className="bg-red-100 text-red-600 p-3 rounded-xl mb-4 text-sm font-bold">{error}</div>}
@@ -53,31 +53,31 @@ const AuthForm = ({ user, setUser, t, setIsDark, setLang }) => {
       <form onSubmit={handleSubmit} className="space-y-4 text-left">
         {!isLogin && (
           <div>
-            <label className="block text-sm font-bold mb-1 opacity-70">Name</label>
+            <label className="block text-sm font-bold mb-1 opacity-70">{t('nameLabel')}</label>
             <input type="text" required value={name} onChange={e => setName(e.target.value)} className="w-full px-4 py-3 rounded-2xl bg-gray-100 dark:bg-[#2A2421] text-[#4A3B32] dark:text-white border-none focus:ring-2 focus:ring-[#D97736] outline-none" placeholder="Ramen Lover" />
           </div>
         )}
         <div>
-          <label className="block text-sm font-bold mb-1 opacity-70">Email</label>
+          <label className="block text-sm font-bold mb-1 opacity-70">{t('emailLabel')}</label>
           <input type="email" required value={email} onChange={e => setEmail(e.target.value)} className="w-full px-4 py-3 rounded-2xl bg-gray-100 dark:bg-[#2A2421] text-[#4A3B32] dark:text-white border-none focus:ring-2 focus:ring-[#D97736] outline-none" placeholder="you@example.com" />
         </div>
         <div>
-          <label className="block text-sm font-bold mb-1 opacity-70">Password</label>
+          <label className="block text-sm font-bold mb-1 opacity-70">{t('passwordLabel')}</label>
           <input type="password" required value={password} onChange={e => setPassword(e.target.value)} className="w-full px-4 py-3 rounded-2xl bg-gray-100 dark:bg-[#2A2421] text-[#4A3B32] dark:text-white border-none focus:ring-2 focus:ring-[#D97736] outline-none" placeholder="••••••••" />
         </div>
         <button type="submit" className="w-full bg-[#D97736] text-white py-4 rounded-2xl font-bold text-lg hover:opacity-90 active:scale-95 transition-all shadow-md mt-2">
-          {isLogin ? 'Sign In' : 'Sign Up'}
+          {isLogin ? t('signIn') : t('signUp')}
         </button>
       </form>
       
       <p className="mt-6 text-sm opacity-60">
-        {isLogin ? "Don't have an account? " : "Already have an account? "}
+        {isLogin ? t('dontHaveAccount') : t('alreadyHaveAccount')}
         <button type="button" onClick={() => setIsLogin(!isLogin)} className="font-bold text-[#D97736] hover:underline">
-          {isLogin ? 'Sign Up' : 'Sign In'}
+          {isLogin ? t('signUp') : t('signIn')}
         </button>
       </p>
       <div className="mt-4 text-xs opacity-40">
-        You can still order food without an account by returning to the Menu.
+        {t('withoutAccountOrder')}
       </div>
     </div>
   );
@@ -175,7 +175,7 @@ export default function Account({ isDark, setIsDark, user, setUser, lang, setLan
   return (
     <>
       <Head>
-        <title>{t('restaurantName')} - Account</title>
+        <title>{`${t('restaurantName')} - Account`}</title>
       </Head>
       <main className="p-4 md:p-10 max-w-4xl mx-auto pb-32 md:pb-10 pt-10 min-h-screen animate-fade-in-up">
         
@@ -206,7 +206,7 @@ export default function Account({ isDark, setIsDark, user, setUser, lang, setLan
                     value={tempName}
                     onChange={(e) => setTempName(e.target.value)}
                     className="w-48 px-3 py-2 rounded-xl bg-gray-100 dark:bg-[#2A2421] text-[#4A3B32] dark:text-white border-none focus:ring-2 focus:ring-[#D97736] outline-none font-bold"
-                    placeholder="Your Name"
+                    placeholder={t('yourNamePlaceholder')}
                   />
                   <div className="flex items-center gap-2">
                     <span className="font-bold text-sm text-[#4A3B32] dark:text-[#F5EFE6]">Table:</span>
@@ -215,7 +215,7 @@ export default function Account({ isDark, setIsDark, user, setUser, lang, setLan
                       value={tempTable}
                       onChange={(e) => setTempTable(e.target.value)}
                       className="w-20 px-3 py-2 rounded-xl bg-gray-100 dark:bg-[#2A2421] text-[#4A3B32] dark:text-white border-none focus:ring-2 focus:ring-[#D97736] outline-none font-bold"
-                      placeholder="No."
+                      placeholder={t('noPlaceholder')}
                     />
                   </div>
                   <button onClick={saveProfile} className="bg-[#D97736] text-white px-6 py-2 rounded-xl text-sm font-bold shadow-md hover:opacity-90 active:scale-95 transition-all w-full md:w-auto mt-2">
@@ -238,7 +238,7 @@ export default function Account({ isDark, setIsDark, user, setUser, lang, setLan
                 onClick={handleLogout}
                 className="bg-red-50 dark:bg-red-900/20 text-red-500 font-bold px-4 py-2 rounded-xl hover:bg-red-100 dark:hover:bg-red-900/40 transition-colors"
               >
-                Sign Out
+                {t('signOut')}
               </button>
             </div>
           </div>

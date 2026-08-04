@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function OptionsModal({ item, onClose, onSave, lang }) {
+export default function OptionsModal({ item, onClose, onSave, lang, t }) {
   // If no item, don't render
   if (!item) return null;
 
@@ -59,7 +59,7 @@ export default function OptionsModal({ item, onClose, onSave, lang }) {
       <div className="bg-[#FAF6F0] dark:bg-[#2A2421] w-full sm:w-[500px] max-h-[90vh] overflow-y-auto rounded-t-3xl sm:rounded-3xl shadow-2xl transition-transform transform translate-y-0 p-6 flex flex-col animate-slide-up-panel">
         {/* Header */}
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold">{isEdit ? 'Edit Options' : 'Customize'}</h2>
+          <h2 className="text-2xl font-bold">{isEdit ? t('editOptions') : t('customize')}</h2>
           <button onClick={onClose} className="p-2 bg-white dark:bg-[#38302C] rounded-full hover:scale-110 transition-transform">✕</button>
         </div>
 
@@ -69,19 +69,19 @@ export default function OptionsModal({ item, onClose, onSave, lang }) {
         {/* Options based on category */}
         {(isRamen || isSides) && (
           <div className="mb-6">
-            <h4 className="font-bold mb-3 uppercase text-sm tracking-wider opacity-60">Size</h4>
+            <h4 className="font-bold mb-3 uppercase text-sm tracking-wider opacity-60">{t('size')}</h4>
             <div className="space-y-2">
               <label className="flex items-center justify-between p-4 bg-white dark:bg-[#38302C] rounded-2xl cursor-pointer shadow-sm hover:ring-2 hover:ring-[#D97736] transition-all">
                 <div className="flex items-center gap-3">
                   <input type="radio" name="size" value="Normal" checked={size === 'Normal'} onChange={() => setSize('Normal')} className="w-5 h-5 accent-[#D97736]" />
-                  <span className="font-semibold">Normal</span>
+                  <span className="font-semibold">{t('normal')}</span>
                 </div>
-                <span className="opacity-70">Included</span>
+                <span className="opacity-70">{t('included')}</span>
               </label>
               <label className="flex items-center justify-between p-4 bg-white dark:bg-[#38302C] rounded-2xl cursor-pointer shadow-sm hover:ring-2 hover:ring-[#D97736] transition-all">
                 <div className="flex items-center gap-3">
                   <input type="radio" name="size" value="Special" checked={size === 'Special'} onChange={() => setSize('Special')} className="w-5 h-5 accent-[#D97736]" />
-                  <span className="font-semibold">Special</span>
+                  <span className="font-semibold">{t('special')}</span>
                 </div>
                 <span className="opacity-70">+฿20</span>
               </label>
@@ -89,7 +89,7 @@ export default function OptionsModal({ item, onClose, onSave, lang }) {
                 <label className="flex items-center justify-between p-4 bg-white dark:bg-[#38302C] rounded-2xl cursor-pointer shadow-sm hover:ring-2 hover:ring-[#D97736] transition-all">
                   <div className="flex items-center gap-3">
                     <input type="radio" name="size" value="Super Special" checked={size === 'Super Special'} onChange={() => setSize('Super Special')} className="w-5 h-5 accent-[#D97736]" />
-                    <span className="font-semibold">Super Special</span>
+                    <span className="font-semibold">{t('superSpecial')}</span>
                   </div>
                   <span className="opacity-70">+฿40</span>
                 </label>
@@ -100,19 +100,19 @@ export default function OptionsModal({ item, onClose, onSave, lang }) {
 
         {isRamen && (
           <div className="mb-6">
-            <h4 className="font-bold mb-3 uppercase text-sm tracking-wider opacity-60">Extras</h4>
+            <h4 className="font-bold mb-3 uppercase text-sm tracking-wider opacity-60">{t('extras')}</h4>
             <div className="space-y-2">
               <label className="flex items-center justify-between p-4 bg-white dark:bg-[#38302C] rounded-2xl cursor-pointer shadow-sm hover:ring-2 hover:ring-[#D97736] transition-all">
                 <div className="flex items-center gap-3">
                   <input type="checkbox" checked={extras.includes('Add Egg')} onChange={() => toggleExtra('Add Egg')} className="w-5 h-5 accent-[#D97736] rounded" />
-                  <span className="font-semibold">Add Egg</span>
+                  <span className="font-semibold">{t('addEgg')}</span>
                 </div>
                 <span className="opacity-70">+฿15</span>
               </label>
               <label className="flex items-center justify-between p-4 bg-white dark:bg-[#38302C] rounded-2xl cursor-pointer shadow-sm hover:ring-2 hover:ring-[#D97736] transition-all">
                 <div className="flex items-center gap-3">
                   <input type="checkbox" checked={extras.includes('Extra Chashu')} onChange={() => toggleExtra('Extra Chashu')} className="w-5 h-5 accent-[#D97736] rounded" />
-                  <span className="font-semibold">Extra Chashu</span>
+                  <span className="font-semibold">{t('extraChashu')}</span>
                 </div>
                 <span className="opacity-70">+฿25</span>
               </label>
@@ -122,12 +122,14 @@ export default function OptionsModal({ item, onClose, onSave, lang }) {
 
         {isSides && (
           <div className="mb-6">
-            <h4 className="font-bold mb-3 uppercase text-sm tracking-wider opacity-60">Sauce</h4>
+            <h4 className="font-bold mb-3 uppercase text-sm tracking-wider opacity-60">{t('sauce')}</h4>
             <div className="flex gap-4">
               {['None', 'Ketchup', 'Mayo'].map(s => (
                 <label key={s} className="flex-1 flex items-center justify-center p-3 bg-white dark:bg-[#38302C] rounded-2xl cursor-pointer shadow-sm hover:ring-2 hover:ring-[#D97736] transition-all">
                   <input type="radio" name="sauce" value={s} checked={sauce === s} onChange={() => setSauce(s)} className="hidden" />
-                  <span className={`font-semibold ${sauce === s ? 'text-[#D97736]' : ''}`}>{s}</span>
+                  <span className={`font-semibold ${sauce === s ? 'text-[#D97736]' : ''}`}>
+                    {s === 'None' ? t('none') : s === 'Ketchup' ? t('ketchup') : s === 'Mayo' ? t('mayo') : s}
+                  </span>
                 </label>
               ))}
             </div>
@@ -136,7 +138,7 @@ export default function OptionsModal({ item, onClose, onSave, lang }) {
 
         {isDrinks && (
           <div className="mb-6">
-            <h4 className="font-bold mb-3 uppercase text-sm tracking-wider opacity-60">Sweetness</h4>
+            <h4 className="font-bold mb-3 uppercase text-sm tracking-wider opacity-60">{t('sweetness')}</h4>
             <div className="flex gap-4">
               {['0%', '50%', '100%'].map(s => (
                 <label key={s} className="flex-1 flex items-center justify-center p-3 bg-white dark:bg-[#38302C] rounded-2xl cursor-pointer shadow-sm hover:ring-2 hover:ring-[#D97736] transition-all">
@@ -153,7 +155,7 @@ export default function OptionsModal({ item, onClose, onSave, lang }) {
             onClick={handleSave}
             className="w-full bg-[#D97736] text-white py-4 rounded-2xl font-bold text-lg hover:opacity-90 active:scale-95 transition-all shadow-[0_4px_15px_rgba(217,119,54,0.3)] flex justify-between px-6"
           >
-            <span>{isEdit ? 'Update Order' : 'Add to Order'}</span>
+            <span>{isEdit ? t('updateOrder') : t('addToOrder')}</span>
             <span>฿{currentPrice.toFixed(2)}</span>
           </button>
         </div>
