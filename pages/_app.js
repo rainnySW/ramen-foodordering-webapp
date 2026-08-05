@@ -80,13 +80,13 @@ export default function App({ Component, pageProps }) {
       all: "All", ramen: "Ramen", sides: "Sides", drinks: "Drinks"
     },
     th: {
-      restaurantName: "กินซ่า ราเมน",
+      restaurantName: "กินซ่า ราเมง",
       navHome: "หน้าหลัก", navMenu: "เมนู", navCart: "ตะกร้า", navAccount: "บัญชี",
-      title1: "สัมผัสรสชาติแท้จริงของ", title2: "กินซ่า ราเมน",
-      subtitle: "น้ำซุปเคี่ยวจนเข้มข้น วัตถุดิบพรีเมียม และบรรยากาศที่อบอุ่นที่สุด ราเมนชามโปรดของคุณรออยู่",
+      title1: "สัมผัสรสชาติแท้จริงของ", title2: "กินซ่า ราเมง",
+      subtitle: "น้ำซุปเคี่ยวจนเข้มข้น วัตถุดิบพรีเมียม และบรรยากาศที่อบอุ่นที่สุด ราเมงชามโปรดของคุณรออยู่",
       exploreMenu: "ดูเมนู", chefsPick: "เชฟแนะนำ",
-      menuTitle: "เมนู.", searchPlaceholder: "ค้นหาราเมน...",
-      addToOrder: "เพิ่มลงตะกร้า", noRamenFound: "ไม่พบราเมนที่ตรงกับ",
+      menuTitle: "เมนู.", searchPlaceholder: "ค้นหาราเมง...",
+      addToOrder: "เพิ่มลงตะกร้า", noRamenFound: "ไม่พบราเมงที่ตรงกับ",
       yourOrder: "รายการอาหาร", checkoutTitle: "ชำระเงิน", confirmTitle: "ยืนยันการสั่ง",
       clearCartTitle: "ล้างตะกร้า", receiptTitle: "ใบเสร็จ", clear: "ล้าง",
       emptyCart: "ตะกร้าของคุณว่างเปล่า", total: "ยอดรวม",
@@ -118,7 +118,7 @@ export default function App({ Component, pageProps }) {
       alreadyHaveAccount: "มีบัญชีอยู่แล้วใช่ไหม? ",
       withoutAccountOrder: "คุณยังสามารถสั่งอาหารโดยไม่ต้องมีบัญชีได้โดยกลับไปที่หน้าเมนู",
       yourNamePlaceholder: "ชื่อของคุณ", noPlaceholder: "เลขที่.", signOut: "ออกจากระบบ",
-      all: "ทั้งหมด", ramen: "ราเมน", sides: "ของทานเล่น", drinks: "เครื่องดื่ม"
+      all: "ทั้งหมด", ramen: "ราเมง", sides: "ของทานเล่น", drinks: "เครื่องดื่ม"
     }
   }
   const t = (key) => translations[lang]?.[key] || key
