@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 export default function CartDrawer({ cart, setCart, isCartOpen, setIsCartOpen, setEditingItem, t, user, setUser, lang }) {
   const [checkoutStep, setCheckoutStep] = useState('cart'); // cart, checkout, confirm, slip, clear_confirm
   const [tableNumber, setTableNumber] = useState('');
-  const [paymentOption, setPaymentOption] = useState('Transfer');
+  const [paymentOption, setPaymentOption] = useState('Scan QR');
   const [paymentSlip, setPaymentSlip] = useState(''); // boolean mock
   
   // Sync tableNumber from user when opened
@@ -155,7 +155,7 @@ export default function CartDrawer({ cart, setCart, isCartOpen, setIsCartOpen, s
               <div>
                 <label className="block font-bold mb-3">{t('paymentOption')}</label>
                 <div className="flex gap-3">
-                  {['Transfer', 'Scan QR'].map(opt => (
+                  {['Scan QR', 'Transfer'].map(opt => (
                     <button
                       type="button"
                       key={opt}
